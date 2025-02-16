@@ -2,7 +2,7 @@ package pila;
 
 import nodo.Nodo;
 
-public class PilaImple<T> implements Pila<T>{
+public class PilaImpl<T> implements Pila<T>{
     private Nodo<T> tope;
 
     @Override
@@ -31,5 +31,9 @@ public class PilaImple<T> implements Pila<T>{
     @Override
     public boolean estaVacia() {
         return tope == null;
+    }
+
+    public Nodo<T> getTope() {
+        return tope;
     }
 }

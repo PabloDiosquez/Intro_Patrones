@@ -3,7 +3,7 @@ package nodo;
 public class Nodo<T> {
     private T dato;
     private Nodo<T> prox;
-    
+
     public Nodo(T dato, Nodo<T> prox){
         this.dato = dato;
         this.prox = prox;
