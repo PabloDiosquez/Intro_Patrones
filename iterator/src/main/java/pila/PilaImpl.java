@@ -1,8 +1,11 @@
 package pila;
 
+import iterator.Iterable;
+import iterator.IteradorPila;
+import iterator.Iterator;
 import nodo.Nodo;
 
-public class PilaImpl<T> implements Pila<T>{
+public class PilaImpl<T> implements Pila<T>, Iterable<T> {
     private Nodo<T> tope;
 
     @Override
@@ -35,5 +38,10 @@ public class PilaImpl<T> implements Pila<T>{
 
     public Nodo<T> getTope() {
         return tope;
+    }
+
+    @Override
+    public Iterator<T> crearIterador() {
+        return new IteradorPila<T>(this);
     }
 }
