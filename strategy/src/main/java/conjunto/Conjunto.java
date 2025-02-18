@@ -1,8 +1,9 @@
 package conjunto;
 
+import coleccionable.Coleccionable;
 import comparable.Comparable;
 
-public interface Conjunto {
+public interface Conjunto extends Coleccionable {
     /**
      * Agrega el elemento al conjunto si es que éste no existe.
      * */

@@ -7,20 +7,36 @@ import java.util.List;
  * Es una colección que almacena elementos sin repetición.
  * */
 public class ConjuntoImpl implements Conjunto{
-    private List<Comparable> elementos;
     public void agregar(Comparable elemento){
         if(pertenece(elemento)){
             return;
         }
         elementos.add(elemento);
     }
-
     public boolean pertenece(Comparable elemento){
-        for (Comparable elem: elementos) {
-            if(elem.sosIgual(elemento)){
-                return true;
-            }
-        }
-        return false;
+        return elementos.stream().anyMatch(elem -> elem.sosIgual(elemento));
+    }
+    private List<Comparable> elementos;
+
+    @Override
+    public int cuantos() {
+        return elementos.size();
+    }
+
+    @Override
+    public Comparable minimo() {
+        return elementos.stream()
+                .reduce(elementos.getFirst(), (elem, otro) -> elem.sosMenor(otro) ? elem : otro);
+    }
+
+    @Override
+    public Comparable maximo() {
+        return elementos.stream()
+                .reduce(elementos.getFirst(), (elem, otro) -> elem.sosMayor(otro) ? elem : otro);
+    }
+    
+    @Override
+    public boolean contiene(Comparable comparable) {
+        return pertenece(comparable);
     }
 }
