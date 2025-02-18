@@ -6,11 +6,13 @@ public class Persona implements Comparable {
     private String nombre;
     private int DNI;
 
+    protected EstrategiaComparacion estrategiaComparacion;
+
     public Persona(String nombre, int DNI) {
         this.nombre = nombre;
         this.DNI = DNI;
+        estrategiaComparacion = new EstrategiaComparacionPorDNI();
     }
-
     public String getNombre() {
         return nombre;
     }
@@ -19,18 +21,22 @@ public class Persona implements Comparable {
         return DNI;
     }
 
+    public void setEstrategiaComparacion(EstrategiaComparacion estrategiaComparacion){
+        this.estrategiaComparacion = estrategiaComparacion;
+    }
+
     @Override
     public boolean sosIgual(Comparable otro) {
-        return this.getDNI() == ((Persona)otro).getDNI();
+        return estrategiaComparacion.sosIgual(this, (Persona)otro);
     }
 
     @Override
     public boolean sosMenor(Comparable otro) {
-        return this.getDNI() > ((Persona)otro).getDNI();
+        return estrategiaComparacion.sosMenor(this, (Persona)otro);
     }
 
     @Override
     public boolean sosMayor(Comparable otro) {
-        return this.getDNI() < ((Persona)otro).getDNI();
+        return estrategiaComparacion.sosMayor(this, (Persona)otro);
     }
 }

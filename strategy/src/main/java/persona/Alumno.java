@@ -10,6 +10,7 @@ public class Alumno extends Persona{
         super(nombre, DNI);
         this.legajo = legajo;
         this.promedio = promedio;
+        setEstrategiaComparacion(new EstrategiaComparacionPromedio());
     }
 
     public int getLegajo() {
@@ -22,16 +23,16 @@ public class Alumno extends Persona{
 
     @Override
     public boolean sosIgual(Comparable otro) {
-        return this.getPromedio() < ((Alumno)otro).getPromedio();
+        return estrategiaComparacion.sosIgual(this, (Persona) otro);
     }
 
     @Override
     public boolean sosMenor(Comparable otro) {
-        return this.getPromedio() < ((Alumno)otro).getPromedio();
+        return estrategiaComparacion.sosMenor(this, (Persona) otro);
     }
 
     @Override
     public boolean sosMayor(Comparable otro) {
-        return this.getPromedio() < ((Alumno)otro).getPromedio();
+        return estrategiaComparacion.sosMayor(this, (Persona) otro);
     }
 }
